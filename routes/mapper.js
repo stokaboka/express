@@ -49,11 +49,13 @@ router.get('/', function(req, res) {
 
 router.get('/lon/:lon/lat/:lat/zoom/:zoom', function(req, res) {
     const result = goMapper(req, res);
+    res.header("Content-Type", "application/json");
     res.send(result);
 });
 
 router.get('/lon/:lon/lat/:lat/zoom/:zoom/reload/:reload', function(req, res) {
     const result = goMapper(req, res);
+    res.header("Content-Type", "application/json");
     res.send(result);
 });
 
