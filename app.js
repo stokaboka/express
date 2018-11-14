@@ -8,6 +8,7 @@ let indexRouter = require('./routes/index');
 // let birdsRouter = require('./routes/birds');
 
 let mapperRouter = require('./routes/mapper');
+let dataProviderRouter = require('./routes/dataProvider');
 
 
 let app = express();
@@ -27,6 +28,7 @@ app.use(function(req, res, next) {
 
 // app.use('/', indexRouter);
 app.use('/mapper', mapperRouter);
+app.use('/dp', dataProviderRouter);
 
 // app.use('/users', usersRouter);
 // app.use('/birds', birdsRouter);
