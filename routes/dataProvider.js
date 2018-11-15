@@ -24,10 +24,13 @@ function getNetworkData (req, res) {
             parseInt(req.params.zoom, 10)
         );
 
+        /**
+         * TODO change name variables - layers
+         */
         if(req.params.layer){
-            const layer = dataProvider.generateLayer(req.params.layer)
+            const layers = dataProvider.generateLayer(req.params.layer)
             return {
-                layer,
+                layers,
                 result: 'OK',
                 message: ''
             };
