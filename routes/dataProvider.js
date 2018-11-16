@@ -13,6 +13,7 @@ const ERRORS_MESSAGES = {
 }
 
 const dataProvider = new DataProvider()
+dataProvider.generateLayersData()
 
 function getNetworkData (req, res) {
 
@@ -30,9 +31,9 @@ function getNetworkData (req, res) {
         /**
          * TODO change name variables - layers
          */
-         const layers = dataProvider.generateLayer(req.params.layer)
+         const objects = dataProvider.getLayerData(req.params.layer)
          return {
-            layers,
+             objects,
             result: 'OK',
             message: ''
          };
@@ -58,11 +59,11 @@ router.get('/', function(req, res) {
     res.send(result);
 });
 
-router.get('/lon/:lon/lat/:lat/zoom/:zoom', function(req, res) {
-    const result = getNetworkData(req, res);
-    res.header("Content-Type", "application/json");
-    res.send(result);
-});
+// router.get('/lon/:lon/lat/:lat/zoom/:zoom', function(req, res) {
+//     const result = getNetworkData(req, res);
+//     res.header("Content-Type", "application/json");
+//     res.send(result);
+// });
 
 router.get('/lon/:lon/lat/:lat/zoom/:zoom/layer/:layer', function(req, res) {
     const result = getNetworkData(req, res);
