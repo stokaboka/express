@@ -9,39 +9,33 @@ const router = express.Router();
 const DataProvider = require('../lib/mapper/DataProvider');
 
 const ERRORS_MESSAGES = {
-    WRONG_PARAMETERS: 'wrong DataProvider parameters, missing: lon, lat, zoom'
+    WRONG_PARAMETERS: 'wrong DataProvider parameters, missing: lon, lat, zoom, layer'
 }
+
+const dataProvider = new DataProvider()
 
 function getNetworkData (req, res) {
 
-    if(req.params.lon && req.params.lat && req.params.zoom) {
-
-        const dataProvider = new DataProvider(
-            {
-                lon: parseFloat(req.params.lon),
-                lat: parseFloat(req.params.lat)
-            },
-            parseInt(req.params.zoom, 10)
-        );
+    if(req.params.lon && req.params.lat && req.params.zoom && req.params.layer) {
+        
+        const geoPoint = {
+            lon: parseFloat(req.params.lon),
+            lat: parseFloat(req.params.lat)
+        }
+        
+        const zoom = parseInt(req.params.zoom, 10)
+        
+        dataProvider.initGrid(geoPoint, zoom)
 
         /**
          * TODO change name variables - layers
          */
-        if(req.params.layer){
-            const layers = dataProvider.generateLayer(req.params.layer)
-            return {
-                layers,
-                result: 'OK',
-                message: ''
-            };
-        }else{
-            const layers = dataProvider.generateLayers().getLayers()
-            return {
-                layers,
-                result: 'OK',
-                message: ''
-            };
-        }
+         const layers = dataProvider.generateLayer(req.params.layer)
+         return {
+            layers,
+            result: 'OK',
+            message: ''
+         };
 
     }else{
 
@@ -77,7 +71,7 @@ router.get('/lon/:lon/lat/:lat/zoom/:zoom/layer/:layer', function(req, res) {
 });
 
 router.get('/layers', function(req, res) {
-    const result = [1,2,3,4,5];
+    const result = dataProvider.getLayers()
     res.header("Content-Type", "application/json");
     res.send(result);
 });
