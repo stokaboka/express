@@ -10,7 +10,7 @@ const Mapper = require('../lib/mapper/Mapper');
 
 const reloadExistTiles = '0';
 
-const tilesImagesPath = process.env.TILES_IMAGES_PATH
+const tilesImagesPath = process.env.TILES_IMAGES_PATH ? process.env.TILES_IMAGES_PATH : '../../public/images'
 
 function goMapper (req, res) {
 
@@ -25,7 +25,8 @@ function goMapper (req, res) {
                 lat: parseFloat(req.params.lat)
             },
             parseInt(req.params.zoom, 10),
-            '../../public/images'
+            tilesImagesPath
+            // '../../public/images'
         );
 
         mapper.start( _reloadExistTiles );
