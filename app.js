@@ -1,7 +1,10 @@
 let express = require('express');
 let path = require('path');
 let cookieParser = require('cookie-parser');
-let logger = require('morgan');
+
+// let logger = require('morgan');
+let log4js = require('log4js');
+let log = log4js.getLogger("app");
 
 let indexRouter = require('./routes/index');
 // let usersRouter = require('./routes/users');
@@ -13,7 +16,8 @@ let dataProviderRouter = require('./routes/dataProvider');
 
 let app = express();
 
-app.use(logger('dev'));
+// app.use(logger('dev'));
+app.use(log4js.connectLogger(log4js.getLogger("http"), { level: 'auto' }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

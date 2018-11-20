@@ -77,4 +77,10 @@ router.get('/layers', function(req, res) {
     res.send(result);
 });
 
+router.get('/object/:id', function(req, res) {
+    const result = dataProvider.getObjectInfo(req.params.id)
+    res.header("Content-Type", "application/json");
+    res.send(result);
+});
+
 module.exports = router;
