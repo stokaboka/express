@@ -77,8 +77,8 @@ router.get('/layers', function(req, res) {
     res.send(result);
 });
 
-router.get('/object/:id', function(req, res) {
-    const result = dataProvider.getObjectInfo(req.params.id)
+router.get('/layer/:layer/object/:object', function(req, res) {
+    const result = dataProvider.getObjectInfo(req.params.layer, req.params.object)
     res.header("Content-Type", "application/json");
     res.send(result);
 });
