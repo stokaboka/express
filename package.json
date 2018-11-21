@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "test": "mocha",
     "start": "node ./bin/www",
     "nf start": "nf start"
   },
@@ -16,5 +17,7 @@
     "morgan": "~1.9.0",
     "npm": "^6.4.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  }
 }
