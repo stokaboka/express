@@ -3,6 +3,8 @@
  * Copyright (c) 2018.  Igor Khorev, Orangem.me, igorhorev@gmail.com
  */
 
+require('dotenv').config();
+
 const express = require('express')
 const router = express.Router()
 
