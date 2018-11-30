@@ -1,40 +1,13 @@
-let express = require('express');
-let path = require('path');
-let cookieParser = require('cookie-parser');
-
-// let logger = require('morgan');
-let log4js = require('log4js');
-let log = log4js.getLogger("app");
-
-let indexRouter = require('./routes/index');
-// let usersRouter = require('./routes/users');
-// let birdsRouter = require('./routes/birds');
-
-let mapperRouter = require('./routes/mapper');
-let dataProviderRouter = require('./routes/dataProvider');
-
-
-let app = express();
-
-// app.use(logger('dev'));
-app.use(log4js.connectLogger(log4js.getLogger("http"), { level: 'auto' }));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
-
-
-// app.use('/', indexRouter);
-app.use('/mapper', mapperRouter);
-app.use('/dp', dataProviderRouter);
-
-// app.use('/users', usersRouter);
-// app.use('/birds', birdsRouter);
-
-module.exports = app;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express = require("express");
+class Server {
+    static bootstrap() {
+        return new Server();
+    }
+    constructor() {
+        this.app = express();
+        this.config();
+    }
+    config() { }
+}

@@ -1,0 +1,45 @@
+/*
+ * Copyright (c) 2018.  Igor Khorev, Orangem.me, igorhorev@gmail.com
+ */
+
+/// <reference path="_all.d.ts" />
+
+"use strict";
+
+import * as bodyParser from "body-parser";
+import * as cookieParser from "cookie-parser"
+import * as express from "express";
+import * as path from "path";
+
+class Server {
+
+    public app: express.Application;
+
+    /**
+     * Bootstrap the application.
+     *
+     * @class Server
+     * @method bootstrap
+     * @static
+     * @return {ng.auto.IInjectorService} Returns the newly created injector for this app.
+     */
+    public static bootstrap(): Server {
+        return new Server();
+    }
+
+    /**
+     * Constructor.
+     *
+     * @class Server
+     * @constructor
+     */
+    constructor() {
+        //create expressjs application
+        this.app = express();
+
+        //configure application
+        this.config();
+    }
+
+    config () {}
+}
